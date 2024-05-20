@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
         remove_btn.disabled = false;
         remove_btn.style.pointerEvents = 'auto';
     }
+    playersInput.value = count_player;
 }
 
     
