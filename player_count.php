@@ -15,10 +15,10 @@ echo head('TITRE');
         <h1>Combien de joueurs ?</h1>
         <form action="" method="post" id="playerForm">
             <div class="count">
-            <h1 class="add_remove_btn remove_btn" id="removeBtn">-</h1>
-            <input type="hidden" name="players" id="playersInput" value="3">
-            <span class="button count_page_btn count_btn" id="countBtn">3</span>
-            <h1 class="add_remove_btn add_btn" id="addBtn">+</h1>
+            <h1 class="add_remove_btn remove_btn" id="removeBtn">-</h1> <!--Diminuer le nombre de joueurs--> 
+            <input type="hidden" name="players" id="playersInput" value="3"> <!--Nombre de joueurs--> 
+            <span class="button count_page_btn count_btn" id="countBtn">3</span> <!--Nombre de joueurs--> 
+            <h1 class="add_remove_btn add_btn" id="addBtn">+</h1> <!--Augmenter le nombre de joueurs--> 
         </div>
             <button class="button count_page_btn" type="submit">Continuer</button>
         </form>

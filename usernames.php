@@ -15,7 +15,7 @@ echo head('TITRE');
     <div class="element_container">
         <h1>Noms des joueurs</h1>
         <div class="usernames_container">
-            <form action="next_page.php" method="post"> <!-- Modifiez l'action en fonction de votre page suivante -->
+            <form action="theme_choice.php" method="post"> <!-- Modifiez l'action en fonction de votre page suivante -->
                 <?php 
                 for ($i = 1; $i <= $players; $i++) {
                     echo '<div class="username_entry">';
