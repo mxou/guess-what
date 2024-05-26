@@ -15,6 +15,7 @@ $player_names = sessionPlayers();
 var_dump($player_names);
 
 ?>
+
 <body>
     <form action="game.php" method="get" class="theme_container">
         <div class="elements_container">
@@ -28,5 +29,3 @@ var_dump($player_names);
         </div>
     </form>
 </body>
-
-
