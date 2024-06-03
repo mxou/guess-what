@@ -5,7 +5,7 @@ echo head('TITRE'); ?>
   <body>
     <div class="element_container">
       <img
-        src="./assets/img/Guess what alpha@2x.png"
+        src="./assets/img/Guesswhatalpha@2x.png"
         alt="Logo de l'appli"
         id="Logo_main_page"
       />
