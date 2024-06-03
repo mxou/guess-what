@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Francois+One&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    background: rgb(57, 47, 90);
+    background: linear-gradient(36deg, rgba(57, 47, 90, 1) 0%, rgba(239, 71, 111, 1) 100%);
+}
+
+h1 {
+    font-family: Francois one;
+    color: white;
+}
+
+.element_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+}
+
+#Logo_main_page {
+    width: 80%;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+}
+
+.buttons_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 22%;
+    margin-bottom: 20%;
+}
+
+.button {
+    background: rgb(255, 136, 17);
+    background: linear-gradient(280deg, rgba(255, 136, 17, 1) 0%, rgba(239, 71, 111, 1) 100%);
+    border: none;
+    color: white;
+    padding: 10px 16px;
+    margin: 5% 0;
+    text-align: center;
+    border-radius: 100px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 35px;
+    font-family: "Francois One", sans-serif;
+    width: 50vw;
+    /* filter: drop-shadow(0px 2px 2px #000000); */
+}
+
+#caca {
+    background: rgb(255, 136, 17);
+    background: linear-gradient(113deg, rgba(255, 136, 17, 1) 0%, rgba(244, 208, 111, 1) 100%);
+}
+
+form,
+.count {
+    display: flex;
+    align-items: center;
+    width: 70vw;
+    justify-content: space-around;
+}
+
+form {
+    flex-direction: column;
+}
+
+.count_btn {
+    width: 40vw;
+}
+
+.add_remove_btn {
+    background-color: #FF8811;
+    border-radius: 50px;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+}
+
+.button_active {
+    background-color: #FCD772;
+}
+
+label {
+    font-size: 1.5rem;
+    font-family: Francois one;
+    color: white;
+}
+
+input {
+    all: unset;
+    background-color: white;
+    font-size: 1.5rem;
+    font-family: Francois one;
+    padding: 5px;
+}
+
+.username_entry {
+    text-align: center;
+}
+
+.theme_container {
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+
+}
+
+.theme {
+    width: 150px;
+    height: 150px;
+    font-size: 1rem;
+}
