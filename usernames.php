@@ -19,14 +19,15 @@ echo head('TITRE');
                 <?php 
                 for ($i = 1; $i <= $players; $i++) {
                     echo '<div class="username_entry">';
-                    echo '<label for="player' . $i . '">Joueur ' . $i . ':</label>';
-                    echo '<input type="text" id="player' . $i . '" name="player' . $i . '" required>';
+                    // echo '<label for="player' . $i . '">Joueur ' . $i . ':</label>';
+                    echo '<input placeholder="Joueur ' . $i . '" type="text" id="player' . $i . '" name="player' . $i . '" required>';
                     echo '</div>';
                 }
                 ?>
                 <button type="submit" class="button">Continuer</button>
             </form>
         </div>
+        <a href="./player_count.php" class="button count_page_btn">Retour</a>
     </div>
     <!-- <?php echo scripts(); ?> -->
 </body>

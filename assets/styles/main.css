@@ -7,7 +7,8 @@
 }
 
 html {
-    background-color: #392F5A;
+    background: rgb(57, 47, 90);
+    background: linear-gradient(36deg, rgba(57, 47, 90, 1) 0%, rgba(239, 71, 111, 1) 100%);
 }
 
 h1 {
@@ -24,7 +25,7 @@ h1 {
 }
 
 #Logo_main_page {
-    width: 50%;
+    width: 80%;
     height: auto;
     display: block;
     margin-left: auto;
@@ -35,28 +36,36 @@ h1 {
 .buttons_container {
     display: flex;
     flex-direction: column;
-    justify-content: end;
+    justify-content: space-between;
     align-items: center;
-    padding-bottom: 20%;
+    height: 22%;
+    margin-bottom: 20%;
 }
 
 .button {
-    background-color: #FF8811;
+    background: rgb(255, 136, 17);
+    background: linear-gradient(280deg, rgba(255, 136, 17, 1) 0%, rgba(239, 71, 111, 1) 100%);
     border: none;
     color: white;
-    padding: 15px 32px;
+    padding: 10px 16px;
     margin: 5% 0;
     text-align: center;
-    border-radius: 15px;
+    border-radius: 100px;
     text-decoration: none;
     display: inline-block;
-    font-size: 50px;
+    font-size: 35px;
     font-family: "Francois One", sans-serif;
-    width: 70vw;
-    filter: drop-shadow(0px 2px 2px #000000);
+    width: 50vw;
+    /* filter: drop-shadow(0px 2px 2px #000000); */
 }
 
-form, .count {
+#caca {
+    background: rgb(255, 136, 17);
+    background: linear-gradient(113deg, rgba(255, 136, 17, 1) 0%, rgba(244, 208, 111, 1) 100%);
+}
+
+form,
+.count {
     display: flex;
     align-items: center;
     width: 70vw;
@@ -83,8 +92,18 @@ form {
     background-color: #FCD772;
 }
 
-input, label {
+label {
     font-size: 1.5rem;
+    font-family: Francois one;
+    color: white;
+}
+
+input {
+    all: unset;
+    background-color: white;
+    font-size: 1.5rem;
+    font-family: Francois one;
+    padding: 5px;
 }
 
 .username_entry {
