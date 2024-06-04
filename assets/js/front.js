@@ -1,5 +1,40 @@
 document.addEventListener('DOMContentLoaded', function() {
 
+    gsap.from(".buttonIndex", {
+        opacity: 0,
+        y: 100,
+        duration: 1,
+        ease: "elastic",
+        stagger: 0.2,
+        fill: "yellow"
+    });
+
+    const logotl = gsap.timeline();
+
+    // gsap.from("#Logo_main_page", {
+    //     x: -300,
+    //     opacity: 0,
+    //     duration: .7,
+    //     ease: "power2.out",
+    //     delay: .2,
+    //     rotation: -300
+    // });
+
+    logotl.from("#Logo_main_page", {
+        x: -300,
+        opacity: 0,
+        duration: .7,
+        ease: "power2.out",
+        delay: .2,
+        rotation: -300
+    },);
+    logotl.to("#Logo_main_page", {
+        duration: .8,
+        scale: .8,
+        ease: "power2.inOut"
+    }, "-=30%");
+
+
     const count_page_btn = document.querySelectorAll('.count_page_btn');
     const remove_btn = document.querySelector('.remove_btn');
     const add_btn = document.querySelector('.add_btn');
