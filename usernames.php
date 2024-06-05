@@ -22,14 +22,16 @@ echo head('TITRE');
         <h1>Noms des joueurs</h1>
         <div class="usernames_container">
             <form action="theme_choice.php" method="post"> <!-- Modifiez l'action en fonction de votre page suivante -->
-                <?php 
-                for ($i = 1; $i <= $players; $i++) {
-                    echo '<div class="username_entry">';
-                    // echo '<label for="player' . $i . '">Joueur ' . $i . ':</label>';
-                    echo '<input placeholder="Joueur ' . $i . '" type="text" id="player' . $i . '" name="player' . $i . '" required>';
-                    echo '</div>';
-                }
-                ?>
+                <div class="ofnames">
+                    <?php 
+                    for ($i = 1; $i <= $players; $i++) {
+                        echo '<div class="username_entry">';
+                        // echo '<label for="player' . $i . '">Joueur ' . $i . ':</label>';
+                        echo '<input placeholder="Joueur ' . $i . '" type="text" id="player' . $i . '" name="player' . $i . '" required>';
+                        echo '</div>';
+                    }
+                    ?>
+                </div>
                 <button type="submit" class="button">Continuer</button>
             </form>
         </div>
