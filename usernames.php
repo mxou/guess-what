@@ -25,8 +25,8 @@ echo head('TITRE');
                 <?php 
                 for ($i = 1; $i <= $players; $i++) {
                     echo '<div class="username_entry">';
-                    echo '<label for="player' . $i . '">Joueur ' . $i . ':</label>';
-                    echo '<input type="text" id="player' . $i . '" name="player' . $i . '" required>';
+                    // echo '<label for="player' . $i . '">Joueur ' . $i . ':</label>';
+                    echo '<input placeholder="Joueur ' . $i . '" type="text" id="player' . $i . '" name="player' . $i . '" required>';
                     echo '</div>';
                 }
                 ?>

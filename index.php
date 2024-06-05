@@ -21,4 +21,5 @@ echo head('TITRE'); ?>
       </div>
     </div>
     <?php echo scripts(); ?>
+  </body>
 </html>
