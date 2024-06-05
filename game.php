@@ -15,7 +15,7 @@ $player_names = $_SESSION['player_names'] ?? [];
 ?>
 
 <head>
-    <link rel="stylesheet" href="./assets/css/landscape.css">
+    <link rel="stylesheet" href="./assets/styles/landscape.css">
 </head>
 
 <body>
@@ -28,4 +28,5 @@ $player_names = $_SESSION['player_names'] ?? [];
             <h2>Pas de joueurs trouvés</h2>
         <?php endif; ?>
     </div>
+    <script src="./assets/js/landscape.js"></script>
 </body>
