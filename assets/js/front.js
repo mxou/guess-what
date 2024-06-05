@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     tl.to(".buttonIndex:not(#caca)", {
         scale: 1.1,
-        rotation: 20,
+        rotation: 5,
         duration: 1,
         ease: "elastic"
     })
