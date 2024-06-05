@@ -14,16 +14,25 @@ document.addEventListener('DOMContentLoaded', function () {
         stagger: 0.2,
     });
 
-    gsap.to(".buttonIndex:not(#caca)", {
-        duration: 1,
-        ease: "elastic",
-        delay: 5,
-        repeatDelay: 5,
-        scale: 1.1,
-        // rotation: 15,
+    const tl = gsap.timeline({
         repeat: -1,
-        yoyo: "true"
+        repeatDelay: 5,
+        delay: 5
     });
+
+    tl.to(".buttonIndex:not(#caca)", {
+        scale: 1.1,
+        rotation: 20,
+        duration: 1,
+        ease: "elastic"
+    })
+        .to(".buttonIndex:not(#caca)", {
+            scale: 1,
+            rotation: 0,
+            duration: 1,
+            ease: "elastic"
+        });
+
 
     const logotl = gsap.timeline();
 
@@ -48,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function () {
         duration: .8,
         scale: .8,
         ease: "power2.inOut"
-    }, "-=30%");
+    }, "-=30%")
 
     // random_btn.addEventListener('click', function () {
     //     gsap.fromTo('.button', {
