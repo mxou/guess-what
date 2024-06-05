@@ -10,13 +10,6 @@ $players = $_SESSION['players'];
 include('./assets/php/functions.php'); 
 echo head('TITRE'); 
 ?>
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="assets/img/Guess_what192.png" />
-  <link rel="stylesheet" href="./assets/styles/main.css">
-  <title>$title</title>
-</head>
 <body>
     <div class="element_container">
         <h1>Noms des joueurs</h1>
