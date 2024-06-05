@@ -10,7 +10,13 @@ $players = $_SESSION['players'];
 include('./assets/php/functions.php'); 
 echo head('TITRE'); 
 ?>
-
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="assets/img/Guess_what192.png" />
+  <link rel="stylesheet" href="./assets/styles/main.css">
+  <title>$title</title>
+</head>
 <body>
     <div class="element_container">
         <h1>Noms des joueurs</h1>
@@ -27,6 +33,7 @@ echo head('TITRE');
                 <button type="submit" class="button">Continuer</button>
             </form>
         </div>
+        <a href="./player_count.php" class="button count_page_btn">Retour</a>
     </div>
     <!-- <?php echo scripts(); ?> -->
 </body>
