@@ -12,7 +12,17 @@ document.addEventListener('DOMContentLoaded', function () {
         duration: 1,
         ease: "elastic",
         stagger: 0.2,
-        fill: "yellow"
+    });
+
+    gsap.to(".buttonIndex:not(#caca)", {
+        duration: 1,
+        ease: "elastic",
+        delay: 5,
+        repeatDelay: 5,
+        scale: 1.1,
+        // rotation: 15,
+        repeat: -1,
+        yoyo: "true"
     });
 
     const logotl = gsap.timeline();
@@ -66,8 +76,8 @@ document.addEventListener('DOMContentLoaded', function () {
     gsap.from('.button:not(.buttonIndex)', {
         x: -200,
         opacity: 0,
-        stagger: .2,
-        duration: .5,
+        stagger: .1,
+        duration: .25,
         ease: "power2.out"
     })
 
