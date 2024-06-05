@@ -9,8 +9,8 @@ include('./assets/php/functions.php');
 require('./assets/bdd/local.php');
 echo head('TITRE'); 
 
-// Récupération du thème sélectionné
 $theme = $_GET['theme'];
+$player_names = $_SESSION['player_names'] ?? [];
 
 ?>
 
@@ -22,8 +22,10 @@ $theme = $_GET['theme'];
     <div class="orientation_warning">non</div>
     <div class="elements_container">
         <h1><?php echo htmlspecialchars($theme); ?></h1>
-        <h2><?php echo showPlayers($player_names[1]); ?> tu commences</h2>
-        <a class="button count_page_btn" href="./game.php">Commencer</a>
-
+        <?php if (!empty($player_names)): ?>
+            <h2><?php echo htmlspecialchars($player_names[0]); ?> tu commences</h2>
+        <?php else: ?>
+            <h2>Pas de joueurs trouvés</h2>
+        <?php endif; ?>
     </div>
 </body>

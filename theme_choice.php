@@ -21,4 +21,4 @@ var_dump($player_names);
             <button type="submit" name="theme" class="theme button" value="musique">Musique</button>
             <button type="submit" name="theme" class="theme button" value="jeux">Jeux</button>
         </form>
-</body>
+</body> 

@@ -63,16 +63,22 @@ function showActeurs($pdo) {
 }
 
 function sessionPlayers() {
-    $players = $_SESSION['players'];
-    $player_names = [];
+    if (!isset($_SESSION['player_names'])) {
+        $players = $_SESSION['players'];
+        $player_names = [];
 
-    for ($i = 1; $i <= $players; $i++) {
-        if (isset($_POST['player' . $i])) {
-            $player_names[] = htmlspecialchars($_POST['player' . $i]);
+        for ($i = 1; $i <= $players; $i++) {
+            if (isset($_POST['player' . $i])) {
+                $player_names[] = htmlspecialchars($_POST['player' . $i]);
+            }
         }
+
+        // Stocker les noms des joueurs dans la session
+        $_SESSION['player_names'] = $player_names;
+    } else {
+        $player_names = $_SESSION['player_names'];
     }
 
-    // Retourner les noms des joueurs
     return $player_names;
 }
 
