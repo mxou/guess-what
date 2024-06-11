@@ -6,7 +6,8 @@
     padding: 0;
 }
 
-body {
+html {
+    height: 100dvh;
     background: rgb(57, 47, 90);
     background: linear-gradient(36deg, rgba(57, 47, 90, 1) 0%, rgba(239, 71, 111, 1) 100%);
 }
@@ -21,7 +22,7 @@ h1 {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    height: 100vh;
+    height: 100dvh;
 }
 
 #Logo_main_page {
