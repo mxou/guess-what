@@ -12,7 +12,8 @@ echo head('TITRE');
 // Récupération du thème sélectionné
 $theme = $_GET['theme'];
 $player_names = $_SESSION['player_names'] ?? [];
-var_dump($player_names);
+var_dump($player_names, $theme);
+
 ?>
 
 <body>
