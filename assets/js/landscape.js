@@ -15,20 +15,35 @@ window.addEventListener('orientationchange', checkOrientation);
 
 
 let currentFilmIndex = 0;
-    function chooseNextFilm() {
-        // Vérifier si tous les films ont été affichés
-        if (currentFilmIndex >= theme_data.length) {
-            document.querySelector('.guess').innerHTML = "Tous les films ont été affichés.";
-            return;
-        }
+let timerActive = false;
+let goodGuess = 0;
 
-        // Sélectionner le film suivant
+function chooseNextFilm() {
+    // Vérifier si tous les films ont été affichés
+    if (currentFilmIndex >= theme_data.length) {
+        document.querySelector('.guess').innerHTML = "Nombre bonnes réponses :" + goodGuess;
+        // document.querySelectorAll('.end_game_button').style.display = 'block';
+        return;
+    }
+    if (timerActive) {
+        return;
+    }
+
+    timerActive = true;
+
+    setTimeout(() => {
         const nextFilm = theme_data[currentFilmIndex];
         currentFilmIndex++;
-
-        // Afficher le film sélectionné
         document.querySelector('.guess').innerHTML = nextFilm;
-    }
+        timerActive = false;
+    }, 2000); 
+}
+
+function addPoint() {
+  setTimeout(() => {
+        goodGuess += 1;
+    }, 2000); 
+}
 
 function startCountdown() {
     let timeLeft = 2;
@@ -45,35 +60,50 @@ function startCountdown() {
         }
     }, 1000);
 }
-
 window.addEventListener('load', startCountdown);
 
- document.querySelector('.next-film-btn').addEventListener('click', function () {
-        chooseNextFilm();
-    });
     console.log(theme_data);
 
 
+// Gestionnaire d'événement pour le clic sur le bouton de demande de permission
+document.getElementById('requestPermissionButton').addEventListener('click', function () {
+  requestDeviceOrientationPermission();
+});
 
+// Gestionnaire d'événement pour l'événement deviceorientation
+window.addEventListener("deviceorientation", handleOrientation, true);
 
-    if ('DeviceOrientationEvent' in window) {
-  window.addEventListener('deviceorientation', deviceOrientationHandler, false);
-} else {
-  console.log('Device Orientation API not supported.');
+function requestDeviceOrientationPermission() {
+  if ('DeviceOrientationEvent' in window) {
+    if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+      DeviceOrientationEvent.requestPermission()
+        .then(permissionState => {
+          if (permissionState === 'granted') {
+            console.log('Permission granted for Device Orientation.');
+          } else {
+            console.log('Permission not granted for Device Orientation.');
+          }
+        })
+        .catch(console.error);
+    } else {
+      console.log('Device Orientation API not supported or no permission needed.');
+    }
+  } else {
+    console.log('Device Orientation API not supported.');
+  }
 }
 
-function deviceOrientationHandler (eventData) {
-  var tiltLR = eventData.gamma;
-  var tiltFB = eventData.beta;
-  var dir = eventData.alpha;
+function handleOrientation(event) {
+  const gamma = Math.round(event.gamma);
+  document.getElementById('t').innerHTML = gamma;
 
-  document.getElementById("doTiltLR").innerHTML = Math.round(tiltLR);
-  document.getElementById("doTiltFB").innerHTML = Math.round(tiltFB);
-  document.getElementById("doDirection").innerHTML = Math.round(dir);
-  
-  console.log(Math.round(tiltLR));
-  console.log(Math.round(tiltFB));
-  console.log(Math.round(dir));
+  if (gamma >= 45 && gamma <= 60) {
+    addPoint();
+    chooseNextFilm();
+  } else if (gamma >= -40 && gamma <= -20) {
+    chooseNextFilm();
+  }
 }
+
 
 });

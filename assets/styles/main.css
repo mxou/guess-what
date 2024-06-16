@@ -160,3 +160,7 @@ input {
     border-radius: 5px;
     color: rgba(0, 0, 0, 0.5);
 }
+
+.end_game_button {
+    display: none;
+}
