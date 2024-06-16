@@ -21,4 +21,5 @@ var_dump($player_names);
             <button type="submit" name="theme" class="theme button" value="musique">Musique</button>
             <button type="submit" name="theme" class="theme button" value="jeux">Jeux</button>
         </form>
+        <a href="./player_count.php" class="button count_page_btn">Retour</a>
 </body> 
