@@ -30,5 +30,5 @@ echo head('TITRE');
         </div>
         <a href="./player_count.php" class="button count_page_btn">Retour</a>
     </div>
-    <!-- <?php echo scripts(); ?> -->
+    <?php echo scripts(); ?>
 </body>
