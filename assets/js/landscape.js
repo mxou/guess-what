@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
 
+  alert(requestDeviceOrientationPermission());
+
 function checkOrientation() {
     if (window.innerHeight > window.innerWidth) {
         document.querySelector('.orientation_warning').style.display = 'block';
@@ -17,6 +19,7 @@ window.addEventListener('orientationchange', checkOrientation);
 let currentFilmIndex = 0;
 let timerActive = false;
 let goodGuess = 0;
+let timerActivePoint = false;
 
 function chooseNextFilm() {
     // Vérifier si tous les films ont été affichés
@@ -40,8 +43,15 @@ function chooseNextFilm() {
 }
 
 function addPoint() {
-  setTimeout(() => {
-        goodGuess += 1;
+  if (timerActivePoint) {
+        return;
+    }
+
+    timerActivePoint = true;
+
+    setTimeout(() => {
+        goodGuess++;
+        timerActivePoint = false;
     }, 2000); 
 }
 
@@ -96,14 +106,12 @@ function requestDeviceOrientationPermission() {
 function handleOrientation(event) {
   const gamma = Math.round(event.gamma);
   document.getElementById('t').innerHTML = gamma;
-
-  if (gamma >= 45 && gamma <= 60) {
-    addPoint();
-    chooseNextFilm();
-  } else if (gamma >= -40 && gamma <= -20) {
-    chooseNextFilm();
+    if (gamma >= 45 && gamma <= 60) {
+      addPoint();
+      chooseNextFilm();
+    } else if (gamma >= -40 && gamma <= -20) {
+      chooseNextFilm();
+    }
   }
-}
-
-
+  
 });

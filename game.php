@@ -37,13 +37,11 @@ $theme_data = array_column($data, 'film');
         <h2>Pas de joueurs trouvés</h2>
         <?php endif; ?>
         <p class="countdown">5</p>
-        <a href="pregame.php" class="button end_game_button">Suivant</a>
-        <a href="theme_choice.php" class="button end_game_button">Accueil</a>
     </div>
 
     <div>
         <div id="t">vals :</div>
-        <button id="requestPermissionButton">Request Device Orientation Permission</button>
+        <button id="requestPermissionButton">Request</button>
     </div>
 
     <script src="./assets/js/landscape.js"></script>
