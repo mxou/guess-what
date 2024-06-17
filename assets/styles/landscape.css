@@ -4,23 +4,38 @@
     z-index: 300;
     width: 100%;
     height: 100%;
-    background-color: red;
+    background: rgb(57, 47, 90);
+    background: linear-gradient(36deg, rgba(57, 47, 90, 1) 0%, rgba(239, 71, 111, 1) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
 }
- 
- @media only screen and (orientation: landscape) {
-     .orientation_warning {
-         display: none;
-     }
 
-     .landscape-only {
-         display: block;
-     }
- }
+.orientation_warning img {
+    width: 50%;
+    transform: rotate(90deg);
+}
 
- body {
+.orientation_warning h3 {
+    font-family: "Francois One", sans-serif;
+    font-size: 25px;
+}
+
+@media only screen and (orientation: landscape) {
+    .orientation_warning {
+        display: none;
+    }
+
+    .landscape-only {
+        display: block;
+    }
+}
+
+body {
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
     height: 100vh;
- }
+}

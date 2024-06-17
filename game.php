@@ -27,7 +27,10 @@ $theme_data = array_column($data, 'film');
 </head>
 
 <body>
-    <div class="orientation_warning">non</div>
+    <div class="orientation_warning">
+        <h3>Retourne ton téléphone !</h3>
+        <img src="./assets/img/cell-phone-svgrepo-com.svg" alt="Téléphone portable">
+    </div>
     <div class="elements_container">
         <h1><?php echo htmlspecialchars($theme); ?></h1>
         <?php if (!empty($player_names)): ?>
@@ -45,6 +48,7 @@ $theme_data = array_column($data, 'film');
     </div>
 
     <script src="./assets/js/landscape.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script>
     var theme_data = <?php echo json_encode($theme_data); ?>;
     </script>

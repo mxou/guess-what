@@ -97,6 +97,13 @@ document.addEventListener('DOMContentLoaded', function () {
     //     ease: "power2.out"
     // })
 
+    gsap.to('.orientation_warning img', {
+        rotation: -90,
+        duration: .8,
+        ease: "power2.out",
+        repeat: -1
+    })
+
     const count_btn = document.querySelector('.count_btn');
     let count_player = 3;
     count_btn.textContent = Number(count_player);
