@@ -20,6 +20,7 @@
 .orientation_warning h3 {
     font-family: "Francois One", sans-serif;
     font-size: 25px;
+    color: white;
 }
 
 @media only screen and (orientation: landscape) {
