@@ -13,7 +13,7 @@ $player_names = sessionPlayers();
 
 ?>
 
-<body>
+<body class="tc">
     <h1>Choix du theme</h1>
     <form action="pregame.php" method="get" class="theme_container">
         <button type="submit" name="theme" class="theme button" value="films">Films</button>
@@ -22,4 +22,5 @@ $player_names = sessionPlayers();
         <button type="submit" name="theme" class="theme button" value="jeux">Jeux</button>
     </form>
     <a href="./player_count.php" class="button count_page_btn">Retour</a>
+    <?php echo scripts(); ?>
 </body>
