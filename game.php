@@ -33,7 +33,7 @@ $theme_data = array_column($data, $table);
         <h3>Retourne ton téléphone !</h3>
         <img src="./assets/img/cell-phone-svgrepo-com.svg" alt="Téléphone portable">
     </div>
-    <div class="elements_container">
+    <div class="elements_container" "style="background-image: url('<?php echo "./assets/img/" . $theme . ".png"; ?>')"">
         <h1><?php echo htmlspecialchars($theme); ?></h1>
         <?php if (!empty($player_names)): ?>
         <h2><?php echo htmlspecialchars($player_names[array_rand($player_names)]); ?> tu commences</h2>
@@ -43,6 +43,7 @@ $theme_data = array_column($data, $table);
         <?php endif; ?>
         <p class="countdown">5</p>
         <p class="timer"></p>
+        <!-- <?php echo '<img src="./assets/img/' . $theme . '.png" alt="" class="bg-game">' ?> -->
 
         <a href="theme_choice.php" id="accueil" class="button">Accueil</a>
     </div>

@@ -253,3 +253,44 @@ input {
     bottom: 5px;
     right: 5px;
 }
+
+.countdown,
+.timer {
+    font-size: 2rem;
+    font-family: Francois one;
+    color: white;
+}
+
+.guess {
+    font-size: 8rem;
+    font-family: Francois one;
+    color: white;
+}
+
+.elements_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 115vh auto;
+    background-blend-mode: overlay;
+    background-clip: unset;
+    position: relative;
+    overflow: hidden;
+}
+
+.bg-game {
+    position: absolute;
+    transform-origin: center;
+    height: 115dvh;
+    width: auto;
+    transform: rotate(15deg);
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: -7.5%;
+    right: 0;
+    mix-blend-mode: overlay;
+}

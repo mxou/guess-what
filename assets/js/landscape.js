@@ -50,6 +50,15 @@ document.addEventListener('DOMContentLoaded', function () {
       timeLeft--;
       console.log(timeLeft);
       document.querySelector('.countdown').innerHTML = timeLeft;
+      gsap.from('.countdown', {
+        scale: 3,
+        y: 10,
+        opacity: 0,
+        duration: .5,
+        ease: "power2.out"
+      }
+      );
+
       if (timeLeft <= 0) {
         clearInterval(countdownInterval);
         document.querySelector('h1', 'h2').style.display = 'none';
@@ -66,18 +75,21 @@ document.addEventListener('DOMContentLoaded', function () {
   let goodGuess = 0;
   // Function pour le timer de 60s (durée de la partie)
   function startTimer() {
-    let timeLeft = 10;
+    let timeLeft = 5;
+    document.querySelector('.timer').innerHTML = timeLeft + "s"
     const timer = setInterval(() => {
       timeLeft--;
       document.querySelector('.timer').innerHTML = timeLeft + "s";
       if (timeLeft === 0) {
+        brrr();
         clearInterval(timer);
         document.querySelector('.guess').innerHTML = "Nombre bonnes réponses :" + goodGuess;
+        document.querySelector('.guess').style = "font-size: 4rem;";
         document.querySelector('.timer').innerHTML = "Fin";
         document.querySelector('#accueil').style.display = "block";
         window.removeEventListener("deviceorientation", handleOrientation, false);
       }
-    }, 1100);
+    }, 1000);
   }
 
   // Function pour que ça vibre brrrrrr
