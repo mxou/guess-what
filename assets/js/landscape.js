@@ -49,6 +49,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Vérifier si tous les films ont été affichés
     if (currentFilmIndex >= theme_data.length) {
       document.querySelector('.guess').innerHTML = "Nombre bonnes réponses :" + goodGuess;
+      document.querySelector('#accueil').style.display = "block";
       // document.querySelectorAll('.end_game_button').style.display = 'block';
       return;
     }
