@@ -278,7 +278,6 @@ input {
     background-blend-mode: overlay;
     background-clip: unset;
     position: relative;
-    overflow: hidden;
 }
 
 .bg-game {
