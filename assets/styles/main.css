@@ -179,17 +179,4 @@ input {
 
 #accueil {
     display: none;
-    background: rgb(255, 136, 17);
-        background: linear-gradient(280deg, rgba(255, 136, 17, 1) 0%, rgba(239, 71, 111, 1) 100%);
-        border: none;
-        color: white;
-        padding: 10px 16px;
-        margin: 5% 0;
-        text-align: center;
-        border-radius: 100px;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 35px;
-        font-family: "Francois One", sans-serif;
-        width: 50vw;
 }
