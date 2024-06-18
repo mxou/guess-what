@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
-
-  alert(requestDeviceOrientationPermission());
+  console.log(theme_data);
+  // ORIENTATION CHECK
+  // ORIENTATION CHECK
 
   gsap.from('h3', {
     y: -100,
@@ -38,19 +39,66 @@ document.addEventListener('DOMContentLoaded', function () {
   window.addEventListener('load', checkOrientation);
   window.addEventListener('orientationchange', checkOrientation);
 
+  // ORIENTATION CHECK
+  // ORIENTATION CHECK
+
+  // Function timer qui annonce que la partie va commencer
+   function startCountdown() {
+    let timeLeft = 5;
+    console.log(timeLeft);
+    const countdownInterval = setInterval(() => {
+      timeLeft--;
+      console.log(timeLeft);
+      document.querySelector('.countdown').innerHTML = timeLeft;
+      if (timeLeft <= 0) {
+        clearInterval(countdownInterval);
+        document.querySelector('h1', 'h2').style.display = 'none';
+        document.querySelector('h2').style.display = 'none';
+        document.querySelector('.countdown').style.display = 'none';
+        startTimer();
+      } if (timeLeft === 2) {
+        chooseNextFilm();
+      }
+    }, 1000);
+  }
+  window.addEventListener('load', startCountdown);
+
+    let goodGuess = 0;
+// Function pour le timer de 60s (durée de la partie)
+ function startTimer() {
+    let timeLeft = 10;
+    const timer = setInterval(() => {
+      timeLeft--;
+       document.querySelector('.timer').innerHTML = timeLeft + "s";
+       if(timeLeft === 0) {
+        clearInterval(timer);
+        document.querySelector('.guess').innerHTML = "Nombre bonnes réponses :" + goodGuess;
+        document.querySelector('.timer').innerHTML = "Fin";
+         window.removeEventListener("deviceorientation", handleOrientation, false);
+       }
+    }, 1100);
+  }
+
+// Function pour que ça vibre brrrrrr
+function brrr() {
+  if ('vibrate' in navigator) {
+    navigator.vibrate(800);
+    console.log('Vibration API supported and used.');
+  } else {
+    console.log('Vibration API not supported.');
+  }
+}
 
 
+// Function qui va afficher le prochain film
   let currentFilmIndex = 0;
   let timerActive = false;
-  let goodGuess = 0;
   let timerActivePoint = false;
 
   function chooseNextFilm() {
-    // Vérifier si tous les films ont été affichés
     if (currentFilmIndex >= theme_data.length) {
-      document.querySelector('.guess').innerHTML = "Nombre bonnes réponses :" + goodGuess;
-      document.querySelector('#accueil').style.display = "block";
-      // document.querySelectorAll('.end_game_button').style.display = 'block';
+    document.querySelector('#accueil').style.display = "block";
+    brrr();
       return;
     }
     if (timerActive) {
@@ -67,6 +115,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }, 2000);
   }
 
+  // Function pour add des points quand le téléphone est incliné vers le bas
   function addPoint() {
     if (timerActivePoint) {
       return;
@@ -80,57 +129,40 @@ document.addEventListener('DOMContentLoaded', function () {
     }, 2000);
   }
 
-  function startCountdown() {
-    let timeLeft = 5;
-    console.log(timeLeft);
-    const countdownInterval = setInterval(() => {
-      timeLeft--;
-      console.log(timeLeft);
-      document.querySelector('.countdown').innerHTML = timeLeft;
-      if (timeLeft <= 0) {
-        clearInterval(countdownInterval);
-        document.querySelector('h1', 'h2').style.display = 'none';
-        document.querySelector('h2').style.display = 'none';
-        chooseNextFilm();
-      }
-    }, 1000);
-  }
-  window.addEventListener('load', startCountdown);
+ 
+   // Gère le droit d'utilier la device position sur IOS
+            document.getElementById('requestPermissionButton').addEventListener('click', function () {
+                requestDeviceOrientationPermission();
+            });
 
-  console.log(theme_data);
-
-
-  // Gestionnaire d'événement pour le clic sur le bouton de demande de permission
-  document.getElementById('requestPermissionButton').addEventListener('click', function () {
-    requestDeviceOrientationPermission();
-  });
-
-  // Gestionnaire d'événement pour l'événement deviceorientation
-  window.addEventListener("deviceorientation", handleOrientation, true);
-
-  function requestDeviceOrientationPermission() {
-    if ('DeviceOrientationEvent' in window) {
-      if (typeof DeviceOrientationEvent.requestPermission === 'function') {
-        DeviceOrientationEvent.requestPermission()
-          .then(permissionState => {
-            if (permissionState === 'granted') {
-              console.log('Permission granted for Device Orientation.');
-            } else {
-              console.log('Permission not granted for Device Orientation.');
+            function requestDeviceOrientationPermission() {
+                if ('DeviceOrientationEvent' in window) {
+                    if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+                        DeviceOrientationEvent.requestPermission()
+                            .then(permissionState => {
+                                if (permissionState === 'granted') {
+                                    console.log('Permission granted for Device Orientation.');
+                                    window.addEventListener("deviceorientation", handleOrientation, false);
+                                } else {
+                                    console.log('Permission not granted for Device Orientation.');
+                                }
+                            })
+                            .catch(console.error);
+                    } else {
+                        console.log('Device Orientation API not supported or no permission needed.');
+                        window.addEventListener("deviceorientation", handleOrientation, false);
+                    }
+                } else {
+                    console.log('Device Orientation API not supported.');
+                }
             }
-          })
-          .catch(console.error);
-      } else {
-        console.log('Device Orientation API not supported or no permission needed.');
-      }
-    } else {
-      console.log('Device Orientation API not supported.');
-    }
-  }
+
+
+
 
   function handleOrientation(event) {
     const gamma = Math.round(event.gamma);
-    document.getElementById('t').innerHTML = gamma;
+    // document.getElementById('t').innerHTML = gamma;
     if (gamma >= 45 && gamma <= 60) {
       addPoint();
       chooseNextFilm();
