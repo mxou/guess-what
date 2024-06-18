@@ -74,6 +74,7 @@ document.addEventListener('DOMContentLoaded', function () {
         clearInterval(timer);
         document.querySelector('.guess').innerHTML = "Nombre bonnes réponses :" + goodGuess;
         document.querySelector('.timer').innerHTML = "Fin";
+        document.querySelector('#accueil').style.display = "block";
          window.removeEventListener("deviceorientation", handleOrientation, false);
        }
     }, 1100);

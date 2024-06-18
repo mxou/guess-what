@@ -10,14 +10,16 @@ require('./assets/bdd/local.php');
 echo head('TITRE'); 
 
 $theme = $_GET['theme'];
+$table = str_replace("s", "", $theme);
 $player_names = $_SESSION['player_names'] ?? [];
 
-$sql = "SELECT * FROM $theme ORDER BY `film` ASC";
+
+$sql = "SELECT * FROM $theme ORDER BY $table ASC";
 $stmt = $pdo->query($sql);
 $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 // var_dump($data);
 
-$theme_data = array_column($data, 'film');
+$theme_data = array_column($data, $table);
 // var_dump($theme_data);
 
 ?>
@@ -42,12 +44,12 @@ $theme_data = array_column($data, 'film');
         <p class="countdown">5</p>
         <p class="timer"></p>
 
+        <a href="theme_choice.php" id="accueil" class="button">Accueil</a>
     </div>
 
     <div>
         <!-- <div id="t">Valeur gamma</div> -->
         <button id="requestPermissionButton">Request</button>
-        <a href="theme_choice.php" id="accueil" class="button">acc</a>
     </div>
 
     <script src="./assets/js/landscape.js"></script>
