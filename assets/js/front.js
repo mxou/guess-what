@@ -58,13 +58,13 @@ document.addEventListener('DOMContentLoaded', function () {
     tl.to(".buttonIndex:not(#caca)", {
         scale: 1.1,
         rotation: 5,
-        duration: 1,
+        duration: 2,
         ease: "elastic"
     })
         .to(".buttonIndex:not(#caca)", {
             scale: 1,
             rotation: 0,
-            duration: 1,
+            duration: 2,
             ease: "elastic"
         });
 
