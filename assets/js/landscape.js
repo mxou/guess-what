@@ -1,7 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-  alert(requestDeviceOrientationPermission());
-
   gsap.from('h3', {
     y: -100,
     opacity: 0,
@@ -39,6 +37,19 @@ document.addEventListener('DOMContentLoaded', function () {
   window.addEventListener('orientationchange', checkOrientation);
 
 
+function brrr() {
+  if ('vibrate' in navigator) {
+    navigator.vibrate(200);
+    console.log('Vibration API supported and used.');
+  } else {
+    console.log('Vibration API not supported.');
+  }
+}
+
+
+document.querySelector('#brr_btn').addEventListener('click', function(){
+  brrr();
+});
 
   let currentFilmIndex = 0;
   let timerActive = false;
@@ -50,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (currentFilmIndex >= theme_data.length) {
       document.querySelector('.guess').innerHTML = "Nombre bonnes réponses :" + goodGuess;
       document.querySelector('#accueil').style.display = "block";
-      // document.querySelectorAll('.end_game_button').style.display = 'block';
+      brrr();
       return;
     }
     if (timerActive) {
@@ -127,6 +138,9 @@ document.addEventListener('DOMContentLoaded', function () {
       console.log('Device Orientation API not supported.');
     }
   }
+
+
+
 
   function handleOrientation(event) {
     const gamma = Math.round(event.gamma);

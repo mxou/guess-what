@@ -46,6 +46,7 @@ $theme_data = array_column($data, 'film');
         <div id="t">vals :</div>
         <button id="requestPermissionButton">Request</button>
         <a href="theme_choice.php" id="accueil" class="button">acc</a>
+        <button id="brr_btn">brrr</button>
     </div>
 
     <script src="./assets/js/landscape.js"></script>
