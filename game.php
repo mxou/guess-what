@@ -34,19 +34,20 @@ $theme_data = array_column($data, 'film');
     <div class="elements_container">
         <h1><?php echo htmlspecialchars($theme); ?></h1>
         <?php if (!empty($player_names)): ?>
-        <h2><?php echo htmlspecialchars($player_names[0]); ?> tu commences</h2>
+        <h2><?php echo htmlspecialchars($player_names[array_rand($player_names)]); ?> tu commences</h2>
         <p class="guess"></p>
         <?php else: ?>
         <h2>Pas de joueurs trouvés</h2>
         <?php endif; ?>
         <p class="countdown">5</p>
+        <p class="timer"></p>
+
     </div>
 
     <div>
-        <div id="t">vals :</div>
+        <!-- <div id="t">Valeur gamma</div> -->
         <button id="requestPermissionButton">Request</button>
         <a href="theme_choice.php" id="accueil" class="button">acc</a>
-        <button id="brr_btn">brrr</button>
     </div>
 
     <script src="./assets/js/landscape.js"></script>

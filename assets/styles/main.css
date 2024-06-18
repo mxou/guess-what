@@ -202,3 +202,9 @@ input {
     /* box-shadow: 0 0 10px #FCD772; */
     pointer-events: none;
 }
+
+#requestPermissionButton {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+}
