@@ -3,9 +3,27 @@ document.addEventListener('DOMContentLoaded', function () {
     const count_page_btn = document.querySelectorAll('.count_page_btn');
     const remove_btn = document.querySelector('.remove_btn');
     const add_btn = document.querySelector('.add_btn');
-    const random_btn = document.querySelectorAll('.button')
-    const arbutton = document.querySelectorAll('.add_remove-btn')
+    const random_btn = document.querySelectorAll('.button');
+    const arbutton = document.querySelectorAll('.add_remove-btn');
+    const anibtn = document.querySelectorAll('.button');
 
+    anibtn.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            console.log('test')
+            gsap.to(btn, {
+                scale: 1.1,
+                duration: .1,
+                ease: 'power2.out',
+                onComplete: function () {
+                    gsap.to(btn, {
+                        scale: 1,
+                        duration: .1,
+                        ease: 'power2.in'
+                    });
+                }
+            })
+        })
+    })
     function createBubble() {
         const bubble = document.createElement('div');
         bubble.className = 'bubble';
