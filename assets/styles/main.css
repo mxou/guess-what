@@ -149,10 +149,40 @@ input {
 
 }
 
-.theme {
+.theme_container>.theme {
+    all: unset;
+    text-align: center;
     width: 150px;
     height: 150px;
-    font-size: 1rem;
+    font-size: 2rem;
+    font-family: Francois one;
+    border-radius: 10%;
+    color: #FFF8F0;
+    background: #FF8811;
+    background: linear-gradient(120deg, #F4D06F 0%, #EF476F 100%);
+    /* border: solid #FCD772 1px; */
+    filter: drop-shadow(0px 0px 5px #0000001a);
+    position: relative;
+    overflow: hidden;
+}
+
+.theme>img {
+    position: absolute;
+    transform-origin: center;
+    width: 115%;
+    height: auto;
+    transform: rotate(15deg);
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: -7.5%;
+    right: 0;
+    z-index: -1;
+    mix-blend-mode: overlay;
+}
+
+.theme>span {
+    filter: drop-shadow(0px 0px 3px #000000be);
 }
 
 .ofnames {
@@ -196,7 +226,7 @@ input {
 
 .bubble {
     position: absolute;
-    bottom: -50px;
+    bottom: -80px;
     border-radius: 50%;
     background: #EF467F;
     /* box-shadow: 0 0 10px #FCD772; */

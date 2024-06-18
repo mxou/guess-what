@@ -10,22 +10,22 @@ document.addEventListener('DOMContentLoaded', function () {
         const bubble = document.createElement('div');
         bubble.className = 'bubble';
 
-        const size = Math.random() * 60 + 20; // Random size between 20px and 80px
+        const size = Math.random() * 60 + 20;
         bubble.style.width = `${size}px`;
         bubble.style.height = `${size}px`;
 
-        bubble.style.left = `${Math.random() * 100}vw`; // Random horizontal position
-        bubble.style.opacity = Math.random() * 0.5 + 0.5; // Random opacity between 0.5 and 1
+        bubble.style.left = `${Math.random() * 100}vw`;
+        bubble.style.opacity = Math.random() * 0.5 + 0.5;
 
         document.getElementById('bubble-container').appendChild(bubble);
 
-        // GSAP animation
-        const duration = Math.random() * 5 + 5; // Random float duration
-        const swayDuration = Math.random() * 2 + 1; // Random sway duration
+        const duration = Math.random() * 5 + 5;
+        const swayDuration = Math.random() * 2 + 1;
 
         gsap.to(bubble, {
             y: -window.innerHeight,
             duration: duration,
+            opacity: 0,
             ease: "none",
             onComplete: () => bubble.remove()
         });
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    setInterval(createBubble, 500); // Create a bubble every 500ms
+    setInterval(createBubble, 500);
 
     gsap.from(".buttonIndex", {
         opacity: 0,
@@ -123,6 +123,14 @@ document.addEventListener('DOMContentLoaded', function () {
         stagger: .1,
         duration: .25,
         ease: "power2.out"
+    })
+
+    gsap.from('.theme', {
+        scale: 0.5,
+        opacity: 0,
+        stagger: .1,
+        duration: .5,
+        ease: "elastic.out(1,0.4)"
     })
 
     // gsap.from('add_remove_button', {
