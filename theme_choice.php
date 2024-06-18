@@ -10,7 +10,7 @@ include('./assets/php/functions.php');
 echo head('TITRE'); 
 
 $player_names = sessionPlayers();
-var_dump($player_names);
+// var_dump($player_names);
 
 ?>
 
