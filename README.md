@@ -2,6 +2,6 @@
 
 Guess what ?
 
-Guess what est un jeu multijoueurs adapté aus soirées inspiré sur le jeu "Olé Mains"
+Guess what est un jeu multijoueurs adapté aux soirées basé sur le jeu devine tête
 
-Le but de ce jeu est basé sur le jeu devine tête
+(Inspiraion du jeu "Olé Mains")

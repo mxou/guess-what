@@ -44,12 +44,12 @@ $theme_data = array_column($data, $table);
         <p class="countdown">5</p>
         <p class="timer"></p>
 
+        <a href="theme_choice.php" id="accueil" class="button">Accueil</a>
     </div>
 
     <div>
         <!-- <div id="t">Valeur gamma</div> -->
         <button id="requestPermissionButton">Request</button>
-        <a href="theme_choice.php" id="accueil" class="button">acc</a>
     </div>
 
     <script src="./assets/js/landscape.js"></script>
