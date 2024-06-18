@@ -5,6 +5,7 @@ echo head('Accueil'); ?>
 <head>
 
 <body>
+    <div id="bubble-container"></div>
     <div class="element_container">
         <img src="./assets/img/Guesswhatalpha@2x.png" alt="Logo de l'appli" id="Logo_main_page" />
         <div class="buttons_container">
