@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-
+checkAndRequestPermission();
   console.log(theme_data);
   // ORIENTATION CHECK
   // ORIENTATION CHECK
@@ -156,32 +156,18 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
 
-  // Gère le droit d'utilier la device position sur IOS
-  document.getElementById('requestPermissionButton').addEventListener('click', function () {
-    requestDeviceOrientationPermission();
-  });
+            function checkAndRequestPermission() {
+                const permissionStatus = localStorage.getItem('devicePositionPermission');
+                console.log(permissionStatus);
 
-  function requestDeviceOrientationPermission() {
-    if ('DeviceOrientationEvent' in window) {
-      if (typeof DeviceOrientationEvent.requestPermission === 'function') {
-        DeviceOrientationEvent.requestPermission()
-          .then(permissionState => {
-            if (permissionState === 'granted') {
-              console.log('Permission granted for Device Orientation.');
-              window.addEventListener("deviceorientation", handleOrientation, false);
-            } else {
-              console.log('Permission not granted for Device Orientation.');
+                if (permissionStatus === 'granted') {
+                    console.log('Permission for device position already granted.');
+                     window.addEventListener("deviceorientation", handleOrientation, false);           
+                } else {
+                    console.log('Permission not granted for device position.');
+                    // window.location.href = 'index.php';
+                }
             }
-          })
-          .catch(console.error);
-      } else {
-        console.log('Device Orientation API not supported or no permission needed.');
-        window.addEventListener("deviceorientation", handleOrientation, false);
-      }
-    } else {
-      console.log('Device Orientation API not supported.');
-    }
-  }
 
   function handleOrientation(event) {
     // console.log("gamma frr")
