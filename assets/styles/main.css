@@ -343,6 +343,7 @@ input {
     padding: 10px 20px;
     align-items: center;
     position: absolute;
+    top: 10dvh;
     z-index: 1;
     color: black;
     font-size: 0.8rem;
