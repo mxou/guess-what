@@ -31,8 +31,8 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    window.onload = checkDevice;
-    window.onresize = checkDevice;
+    // window.onload = checkDevice;
+    // window.onresize = checkDevice;
     anibtn.forEach(function (btn) {
         btn.addEventListener('click', function () {
             console.log('test')
