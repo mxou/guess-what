@@ -10,6 +10,8 @@ document.addEventListener('DOMContentLoaded', function () {
     function checkDevice() {
         if (window.innerHeight < window.innerWidth) {
             document.querySelector('body').innerHTML = gandalf();
+        } else {
+            removeGandalf();
         }
     }
 
@@ -20,6 +22,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 <h1>Guess What est un jeu conçu pour smartphone, si tu veux y jouer reviens sur ton téléphone !</h1>
             </div>
         `;
+    }
+    function removeGandalf() {
+        const gandalfContent = document.getElementById('gandalf-content');
+        if (gandalfContent) {
+            gandalfContent.remove();
+        }
     }
 
     window.onload = checkDevice;
