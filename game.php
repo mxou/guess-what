@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['next_player'])) {
         <h1><?php echo htmlspecialchars($theme); ?></h1>
 
         <?php if (!empty($player_names)): ?>
-        <h2><span><?php echo htmlspecialchars($current_player); ?></span> tu commences</h2>
+        <h2><span><?php echo htmlspecialchars($current_player); ?></span> à ton tour</h2>
         <p class="guess"></p>
         <p class="results"></p>
         <?php else: ?>
@@ -61,15 +61,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['next_player'])) {
         <p class="timer"></p>
 
         <a href="theme_choice.php" id="accueil" class="button">Accueil</a>
-        <?php if (count($player_names) > 1): ?>
-        <form method="post" action="">
-            <button type="submit" name="next_player" id="next" class="button">Joueur Suivant</button>
-        </form>
-        <?php endif; ?>
-
-        <?php if ($_SESSION['current_player_index'] === count($player_names) - 1): ?>
+        
+        <?php if ($_SESSION['current_player_index'] >= count($player_names) - 1) { ?>
         <div id="scoreScreen" class="button">Voir les résultats</div>
-        <?php endif; ?>
+        <?php $_SESSION['current_player_index'] = 0; ?>
+    <?php }  else { ?>
+        <form method="post" action="">
+        <button type="submit" name="next_player" id="next" class="button">Joueur Suivant</button>
+    </form> 
+    <?php } ?>
     </div>
     <div id="results-screen">
         <h1>Tableau des scores :</h1>
