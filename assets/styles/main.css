@@ -294,3 +294,29 @@ input {
     right: 0;
     mix-blend-mode: overlay;
 }
+
+#gandalf {
+    position: absolute;
+    width: 100dvw;
+    height: 100dvh;
+    background: linear-gradient(36deg, rgba(57, 47, 90, 1) 0%, rgba(239, 71, 111, 1) 100%);
+    overflow: hidden;
+    color: #FFF8F0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 10vh 25vw;
+    text-align: center;
+}
+
+#gandalf img {
+    width: 40vh;
+    height: auto;
+}
+
+#gandalf h1 {
+    font-size: 3rem;
+    font-family: Francois one;
+    color: white;
+}

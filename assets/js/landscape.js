@@ -119,6 +119,12 @@ document.addEventListener('DOMContentLoaded', function () {
   function chooseNextFilm() {
     if (currentFilmIndex >= theme_data.length) {
       document.querySelector('#accueil').style.display = "block";
+      document.querySelector('.results').innerHTML = "Nombre bonnes réponses :" + goodGuess;
+      document.querySelector('.results').style = "font-size: 4rem;";
+      document.querySelector('.results').style = "display: block;"
+      document.querySelector('.guess').style = "display: none;"
+      document.querySelector('.timer').innerHTML = "Fin";
+      window.removeEventListener("deviceorientation", handleOrientation, false);
       brrr();
       return;
     }
