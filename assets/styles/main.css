@@ -80,9 +80,10 @@ a:-webkit-any-link:focus-visible {
     outline: -webkit-focus-ring-color auto 0;
 }
 
-#caca {
+#installButton {
     background: rgb(255, 136, 17);
     background: linear-gradient(113deg, rgba(255, 136, 17, 1) 0%, rgba(244, 208, 111, 1) 100%);
+    display: none;
 }
 
 form,

@@ -3,6 +3,8 @@ include('./assets/php/functions.php');
 echo head('Accueil'); ?>
 
 <head>
+    <link rel="manifest" href="./manifest.json">
+</head>
 
 <body>
     <div id="bubble-container"></div>
@@ -10,7 +12,7 @@ echo head('Accueil'); ?>
         <img src="./assets/img/Guesswhatalpha@2x.png" alt="Logo de l'appli" id="Logo_main_page" />
         <div class="buttons_container">
             <a href="./player_count.php" class="button buttonIndex">JOUER</a>
-            <a href="./options.php" class="button buttonIndex" id="caca">Options</a>
+            <button class="button buttonIndex" id="installButton">Install App</button>
         </div>
     </div>
     <?php echo scripts(); ?>
