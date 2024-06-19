@@ -241,7 +241,8 @@ input {
     bottom: -80px;
     border-radius: 50%;
     background: #EF467F;
-    /* box-shadow: 0 0 10px #FCD772; */
+    box-shadow: inset 7px 7px 7px #ce879f;
+    filter: drop-shadow(0 0 5px #ce879f);
     pointer-events: none;
 }
 
@@ -250,7 +251,7 @@ input {
     bottom: 5px;
     right: 5px; */
     background: rgb(255, 136, 17);
-        background: linear-gradient(113deg, rgba(255, 136, 17, 1) 0%, rgba(244, 208, 111, 1) 100%);
+    background: linear-gradient(113deg, rgba(255, 136, 17, 1) 0%, rgba(244, 208, 111, 1) 100%);
 }
 
 .countdown,
