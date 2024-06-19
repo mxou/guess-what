@@ -58,10 +58,6 @@ document.addEventListener('DOMContentLoaded', function () {
     if ('wakeLock' in navigator) {
       try {
         wakeLock = await navigator.wakeLock.request('screen');
-        wakeLock.addEventListener('release', () => {
-          console.log('Wake Lock was released');
-        });
-        console.log('Wake Lock is active');
       } catch (err) {
         console.error(`${err.name}, ${err.message}`);
       }
@@ -74,7 +70,6 @@ document.addEventListener('DOMContentLoaded', function () {
     if (wakeLock !== null) {
       wakeLock.release().then(() => {
         wakeLock = null;
-        console.log('Wake Lock has been released');
       });
     }
   }
