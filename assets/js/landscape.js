@@ -52,6 +52,41 @@ document.addEventListener('DOMContentLoaded', function () {
   }
   shuffle(theme_data);
 
+  let wakeLock = null;
+
+  async function requestWakeLock() {
+    if ('wakeLock' in navigator) {
+      try {
+        wakeLock = await navigator.wakeLock.request('screen');
+        wakeLock.addEventListener('release', () => {
+          console.log('Wake Lock was released');
+        });
+        console.log('Wake Lock is active');
+      } catch (err) {
+        console.error(`${err.name}, ${err.message}`);
+      }
+    } else {
+      console.warn('Wake Lock API not supported');
+    }
+  }
+
+  function releaseWakeLock() {
+    if (wakeLock !== null) {
+      wakeLock.release().then(() => {
+        wakeLock = null;
+        console.log('Wake Lock has been released');
+      });
+    }
+  }
+
+  window.onload = () => {
+    requestWakeLock();
+  };
+
+  window.onbeforeunload = () => {
+    releaseWakeLock();
+  };
+
   // Function timer qui annonce que la partie va commencer
   let timeLeft = 5;
   function startCountdown() {
