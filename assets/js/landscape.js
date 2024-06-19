@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Function pour le timer de 60s (durée de la partie)
   let goodGuess = 0;
-  let timeLeftIg = 5;
+  let timeLeftIg = 60;
 
   function startTimer() {
     document.querySelector('.timer').innerHTML = timeLeftIg + "s"
@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function () {
         brrr();
         clearInterval(timer);
         document.querySelector('.results').innerHTML = "Nombre bonnes réponses :" + goodGuess;
-        document.querySelector('.results').style = "font-size: 4rem;";
+        document.querySelector('.results').style = "font-size: 2rem;";
         document.querySelector('.results').style = "display: block;"
         document.querySelector('.guess').style = "display: none;"
         document.querySelector('.timer').innerHTML = "Fin";
@@ -234,10 +234,10 @@ document.addEventListener('DOMContentLoaded', function () {
     // console.log("gamma frr")
     const gamma = Math.round(event.gamma);
     document.getElementById('t').innerHTML = gamma;
-    if (gamma >= -60 && gamma <= -45) {
+    if (gamma >= -45 && gamma <= 0) {
       chooseNextFilm();
       addPoint();
-    } else if (gamma >= 45 && gamma <= 60) {
+    } else if (gamma >= 0 && gamma <= 45) {
       chooseNextFilm();
     }
   }
