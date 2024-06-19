@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-checkAndRequestPermission();
+  checkAndRequestPermission();
   console.log(theme_data);
   // ORIENTATION CHECK
   // ORIENTATION CHECK
@@ -27,12 +27,73 @@ checkAndRequestPermission();
     scale: .8,
     ease: "power2.in"
   })
+  // Function timer qui annonce que la partie va commencer
+  let game = false
+  let timeLeft = 5;
+  function startCountdown() {
+    console.log(timeLeft);
+    const countdownInterval = setInterval(() => {
+      timeLeft--;
+      console.log(timeLeft);
+      document.querySelector('.countdown').innerHTML = timeLeft;
+      gsap.from('.countdown', {
+        scale: 3,
+        y: 10,
+        opacity: 0,
+        duration: .5,
+        ease: "power2.out"
+      }
+      );
+
+      if (timeLeft <= 0) {
+        clearInterval(countdownInterval);
+        document.querySelector('h1', 'h2').style.display = 'none';
+        document.querySelector('h2').style.display = 'none';
+        document.querySelector('.countdown').style.display = 'none';
+        document.querySelector('.guess').style = "display: block;"
+        document.querySelector('body').style = "background: none; background-color: #392F5A;"
+        timeLeft = 0;
+        startTimer();
+      } if (timeLeft === 1) {
+        chooseNextFilm();
+      }
+    }, 1000);
+  }
+
+  // Function pour le timer de 60s (durée de la partie)
+  let goodGuess = 0;
+  let timeLeftIg = 60;
+  function startTimer() {
+    document.querySelector('.timer').innerHTML = timeLeftIg + "s"
+    window.addEventListener("deviceorientation", handleOrientation, false);
+    const timer = setInterval(() => {
+      timeLeftIg--;
+      document.querySelector('.timer').innerHTML = timeLeftIg + "s";
+      // console.log(timeLeftIg)
+      if (timeLeftIg === 0) {
+        brrr();
+        clearInterval(timer);
+        document.querySelector('.results').innerHTML = "Nombre bonnes réponses :" + goodGuess;
+        document.querySelector('.results').style = "font-size: 4rem;";
+        document.querySelector('.results').style = "display: block;"
+        document.querySelector('.guess').style = "display: none;"
+        document.querySelector('.timer').innerHTML = "Fin";
+        document.querySelector('#accueil').style.display = "block";
+        window.removeEventListener("deviceorientation", handleOrientation, false);
+      }
+    }, 1000);
+  }
 
   function checkOrientation() {
     if (window.innerHeight > window.innerWidth) {
       document.querySelector('.orientation_warning').style.display = 'flex';
     } else {
       document.querySelector('.orientation_warning').style.display = 'none';
+      if (game == false) {
+        game = true;
+        // console.log(game);
+        startCountdown();
+      }
     }
   }
 
@@ -81,61 +142,6 @@ checkAndRequestPermission();
   window.onbeforeunload = () => {
     releaseWakeLock();
   };
-
-  // Function timer qui annonce que la partie va commencer
-  let timeLeft = 5;
-  function startCountdown() {
-    console.log(timeLeft);
-    const countdownInterval = setInterval(() => {
-      timeLeft--;
-      console.log(timeLeft);
-      document.querySelector('.countdown').innerHTML = timeLeft;
-      gsap.from('.countdown', {
-        scale: 3,
-        y: 10,
-        opacity: 0,
-        duration: .5,
-        ease: "power2.out"
-      }
-      );
-
-      if (timeLeft <= 0) {
-        clearInterval(countdownInterval);
-        document.querySelector('h1', 'h2').style.display = 'none';
-        document.querySelector('h2').style.display = 'none';
-        document.querySelector('.countdown').style.display = 'none';
-        document.querySelector('.guess').style = "display: block;"
-        document.querySelector('body').style = "background: none; background-color: #392F5A;"
-        startTimer();
-      } if (timeLeft === 1) {
-        chooseNextFilm();
-      }
-    }, 1000);
-  }
-  window.addEventListener('load', startCountdown);
-
-  let goodGuess = 0;
-  // Function pour le timer de 60s (durée de la partie)
-  function startTimer() {
-    let timeLeftIg = 60;
-    document.querySelector('.timer').innerHTML = timeLeftIg + "s"
-    window.addEventListener("deviceorientation", handleOrientation, false);
-    const timer = setInterval(() => {
-      timeLeftIg--;
-      document.querySelector('.timer').innerHTML = timeLeftIg + "s";
-      if (timeLeftIg === 0) {
-        brrr();
-        clearInterval(timer);
-        document.querySelector('.results').innerHTML = "Nombre bonnes réponses :" + goodGuess;
-        document.querySelector('.results').style = "font-size: 4rem;";
-        document.querySelector('.results').style = "display: block;"
-        document.querySelector('.guess').style = "display: none;"
-        document.querySelector('.timer').innerHTML = "Fin";
-        document.querySelector('#accueil').style.display = "block";
-        window.removeEventListener("deviceorientation", handleOrientation, false);
-      }
-    }, 1000);
-  }
 
   // Function pour que ça vibre brrrrrr
   function brrr() {
@@ -199,18 +205,18 @@ checkAndRequestPermission();
   }
 
 
-            function checkAndRequestPermission() {
-                const permissionStatus = localStorage.getItem('devicePositionPermission');
-                console.log(permissionStatus);
+  function checkAndRequestPermission() {
+    const permissionStatus = localStorage.getItem('devicePositionPermission');
+    console.log(permissionStatus);
 
-                if (permissionStatus === 'granted') {
-                    console.log('Permission for device position already granted.');
-                     window.addEventListener("deviceorientation", handleOrientation, false);           
-                } else {
-                    console.log('Permission not granted for device position.');
-                    // window.location.href = 'index.php';
-                }
-            }
+    if (permissionStatus === 'granted') {
+      console.log('Permission for device position already granted.');
+      window.addEventListener("deviceorientation", handleOrientation, false);
+    } else {
+      console.log('Permission not granted for device position.');
+      // window.location.href = 'index.php';
+    }
+  }
 
   function handleOrientation(event) {
     // console.log("gamma frr")
