@@ -3,7 +3,6 @@ include('./assets/php/functions.php');
 echo head('Accueil'); ?>
 
 <head>
-
 </head>
 
 <body>

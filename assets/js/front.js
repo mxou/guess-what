@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const arbutton = document.querySelectorAll('.add_remove-btn');
     const anibtn = document.querySelectorAll('.button');
 
+
     function checkDevice() {
         if (window.innerHeight < window.innerWidth) {
             document.querySelector('body').innerHTML = gandalf();
