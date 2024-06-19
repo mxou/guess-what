@@ -66,9 +66,9 @@ document.addEventListener('DOMContentLoaded', function () {
         const swayDuration = Math.random() * 2 + 1;
 
         gsap.to(bubble, {
-            y: -window.innerHeight,
+            y: -window.innerHeight - 80,
             duration: duration,
-            opacity: 0,
+            // opacity: 0,
             ease: "none",
             onComplete: () => bubble.remove()
         });
