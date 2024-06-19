@@ -12,21 +12,29 @@ echo head('TITRE');
 $theme = $_GET['theme'];
 $table = substr($theme, 0, -1);
 $player_names = $_SESSION['player_names'] ?? [];
-// var_dump($player_names)
 
+// Initialiser l'index actuel du joueur s'il n'existe pas
+if (!isset($_SESSION['current_player_index'])) {
+    $_SESSION['current_player_index'] = 0;
+}
 
+$current_player_index = $_SESSION['current_player_index'];
+$current_player = $player_names[$current_player_index] ?? '';
+
+// Récupérer les données du thème
 $sql = "SELECT * FROM $theme ORDER BY $table ASC";
 $stmt = $pdo->query($sql);
 $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
-// var_dump($data);
-
 $theme_data = array_column($data, $table);
-// var_dump($theme_data);
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_player'])) {
-    array_shift($player_names);
-    
-    $_SESSION['player_names'] = $player_names;
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['next_player'])) {
+    $_SESSION['current_player_index']++;
+    // Si on dépasse la liste des joueurs, on revient au début
+    if ($_SESSION['current_player_index'] >= count($player_names)) {
+        $_SESSION['current_player_index'] = 0;
+    }
+    header('Location: game.php?theme=' . urlencode($theme));
+    exit;
 }
 
 ?>
@@ -42,25 +50,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_player'])) {
     </div>
     <div class="elements_container">
         <h1><?php echo htmlspecialchars($theme); ?></h1>
+
         <?php if (!empty($player_names)): ?>
-        <h2><span><?php echo htmlspecialchars($player_names[0]); ?></span> tu commences</h2>
+        <h2><?php echo htmlspecialchars($current_player); ?> tu commences</h2>
         <p class="guess"></p>
         <p class="results"></p>
         <?php else: ?>
         <h2>Pas de joueurs trouvés</h2>
         <?php endif; ?>
+
         <p class="countdown">5</p>
         <p class="timer"></p>
-        <!-- <?php echo '<img src="./assets/img/' . $theme . '.png" alt="" class="bg-game">' ?> -->
 
         <a href="theme_choice.php" id="accueil" class="button">Accueil</a>
         <?php if (count($_SESSION['player_names']) > 1): ?>
-            <form method="post" action="">
-                <button type="submit" name="delete_player" id="next" class="button">Joueur Suivant</button>
-            </form>
-        <?php else: 
-            session_destroy();?>
-            <div id="scoreScreen" class="button">Voir les résultats</div>
+        <form method="post" action="">
+            <button type="submit" name="next_player" id="next" class="button">Joueur Suivant</button>
+        </form>
+        <?php else: ?>
+        <div id="scoreScreen" class="button">Voir les résultats</div>
         <?php endif; ?>
     </div>
     <div id="results-screen">
@@ -72,7 +80,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_player'])) {
     </div>
     <div>
         <div id="t" style="display: none">Valeur gamma</div>
-        <!-- <button id="requestPermissionButton">Request</button> -->
     </div>
 
     <script src="./assets/js/landscape.js"></script>
