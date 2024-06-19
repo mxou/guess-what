@@ -38,6 +38,7 @@ $theme_data = array_column($data, $table);
         <?php if (!empty($player_names)): ?>
         <h2><?php echo htmlspecialchars($player_names[array_rand($player_names)]); ?> tu commences</h2>
         <p class="guess"></p>
+        <p class="results"></p>
         <?php else: ?>
         <h2>Pas de joueurs trouvés</h2>
         <?php endif; ?>

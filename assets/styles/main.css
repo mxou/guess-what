@@ -262,7 +262,8 @@ input {
     color: white;
 }
 
-.guess {
+.guess,
+.results {
     font-size: 4rem;
     font-family: Francois one;
     color: white;

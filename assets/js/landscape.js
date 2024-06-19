@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function () {
-  window.addEventListener("deviceorientation", handleOrientation, false);
 
   console.log(theme_data);
   // ORIENTATION CHECK
@@ -40,13 +39,15 @@ document.addEventListener('DOMContentLoaded', function () {
   window.addEventListener('resize', checkOrientation);
   window.addEventListener('load', checkOrientation);
   window.addEventListener('orientationchange', checkOrientation);
+  document.querySelector('.results').style = "display: none;"
+  document.querySelector('.guess').style = "display: none;"
 
   // ORIENTATION CHECK
   // ORIENTATION CHECK
 
   // Function timer qui annonce que la partie va commencer
+  let timeLeft = 5;
   function startCountdown() {
-    let timeLeft = 5;
     console.log(timeLeft);
     const countdownInterval = setInterval(() => {
       timeLeft--;
@@ -66,6 +67,7 @@ document.addEventListener('DOMContentLoaded', function () {
         document.querySelector('h1', 'h2').style.display = 'none';
         document.querySelector('h2').style.display = 'none';
         document.querySelector('.countdown').style.display = 'none';
+        document.querySelector('.guess').style = "display: block;"
         document.querySelector('body').style = "background: none; background-color: #392F5A;"
         startTimer();
       } if (timeLeft === 1) {
@@ -78,16 +80,19 @@ document.addEventListener('DOMContentLoaded', function () {
   let goodGuess = 0;
   // Function pour le timer de 60s (durée de la partie)
   function startTimer() {
-    let timeLeft = 60;
-    document.querySelector('.timer').innerHTML = timeLeft + "s"
+    let timeLeftIg = 60;
+    document.querySelector('.timer').innerHTML = timeLeftIg + "s"
+    window.addEventListener("deviceorientation", handleOrientation, false);
     const timer = setInterval(() => {
-      timeLeft--;
-      document.querySelector('.timer').innerHTML = timeLeft + "s";
-      if (timeLeft === 0) {
+      timeLeftIg--;
+      document.querySelector('.timer').innerHTML = timeLeftIg + "s";
+      if (timeLeftIg === 0) {
         brrr();
         clearInterval(timer);
-        document.querySelector('.guess').innerHTML = "Nombre bonnes réponses :" + goodGuess;
-        document.querySelector('.guess').style = "font-size: 4rem;";
+        document.querySelector('.results').innerHTML = "Nombre bonnes réponses :" + goodGuess;
+        document.querySelector('.results').style = "font-size: 4rem;";
+        document.querySelector('.results').style = "display: block;"
+        document.querySelector('.guess').style = "display: none;"
         document.querySelector('.timer').innerHTML = "Fin";
         document.querySelector('#accueil').style.display = "block";
         window.removeEventListener("deviceorientation", handleOrientation, false);
@@ -122,16 +127,19 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     timerActive = true;
-
+    if (timeLeft <= 0) {
+      document.querySelector('body').style = "background: none; background-color: red;"
+    }
     setTimeout(() => {
       const nextFilm = theme_data[currentFilmIndex];
       currentFilmIndex++;
       document.querySelector('.guess').innerHTML = nextFilm;
       timerActive = false;
+      document.querySelector('body').style = "background: none; background-color: #392F5A;"
     }, 1000);
   }
 
-  // Function pour add des points quand le téléphone est incliné vers le bas
+  // Function pour add des points quand le téléphone est incliné vers le haut
   function addPoint() {
     if (timerActivePoint) {
       return;
@@ -175,19 +183,15 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-
-
-
   function handleOrientation(event) {
-    console.log("gamma frr")
+    // console.log("gamma frr")
     const gamma = Math.round(event.gamma);
     document.getElementById('t').innerHTML = gamma;
-    if (gamma >= 45 && gamma <= 60) {
-      addPoint();
+    if (gamma >= -60 && gamma <= -45) {
       chooseNextFilm();
-    } else if (gamma >= -40 && gamma <= -20) {
+      addPoint();
+    } else if (gamma >= 45 && gamma <= 60) {
       chooseNextFilm();
     }
   }
-
 });
