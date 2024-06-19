@@ -12,6 +12,7 @@ echo head('TITRE');
 $theme = $_GET['theme'];
 $table = str_replace("s", "", $theme);
 $player_names = $_SESSION['player_names'] ?? [];
+// var_dump($player_names)
 
 
 $sql = "SELECT * FROM $theme ORDER BY $table ASC";
@@ -21,6 +22,12 @@ $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 $theme_data = array_column($data, $table);
 // var_dump($theme_data);
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_player'])) {
+    array_shift($player_names);
+    
+    $_SESSION['player_names'] = $player_names;
+}
 
 ?>
 
@@ -33,11 +40,10 @@ $theme_data = array_column($data, $table);
         <h3>Retourne ton téléphone !</h3>
         <img src="./assets/img/cell-phone-svgrepo-com.svg" alt="Téléphone portable">
     </div>
-    <div class="elements_container" "style=" background-image:
-        url('<?php echo "./assets/img/" . $theme . ".png"; ?>')"">
+    <div class="elements_container">
         <h1><?php echo htmlspecialchars($theme); ?></h1>
         <?php if (!empty($player_names)): ?>
-        <h2><?php echo htmlspecialchars($player_names[array_rand($player_names)]); ?> tu commences</h2>
+        <h2><span><?php echo htmlspecialchars($player_names[0]); ?></span> tu commences</h2>
         <p class="guess"></p>
         <p class="results"></p>
         <?php else: ?>
@@ -48,8 +54,22 @@ $theme_data = array_column($data, $table);
         <!-- <?php echo '<img src="./assets/img/' . $theme . '.png" alt="" class="bg-game">' ?> -->
 
         <a href="theme_choice.php" id="accueil" class="button">Accueil</a>
+        <?php if (count($_SESSION['player_names']) > 1): ?>
+            <form method="post" action="">
+                <button type="submit" name="delete_player" id="next" class="button">Joueur Suivant</button>
+            </form>
+        <?php else: 
+            session_destroy();?>
+            <div id="scoreScreen" class="button">Voir les résultats</div>
+        <?php endif; ?>
     </div>
+    <div id="results-screen">
+        <h1>Tableau des scores :</h1>
+        <div>
 
+        </div>
+        <a href="index.php" class="button">Accueil</a>
+    </div>
     <div>
         <div id="t" style="display: none">Valeur gamma</div>
         <!-- <button id="requestPermissionButton">Request</button> -->

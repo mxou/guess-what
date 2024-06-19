@@ -29,7 +29,11 @@ document.addEventListener('DOMContentLoaded', function () {
   })
   // Function timer qui annonce que la partie va commencer
   let game = false
+  let nextButton = document.querySelector('#next');
+  let scoreScreenLink = document.querySelector('#scoreScreen');
   let timeLeft = 5;
+  let results = sessionStorage.getItem('results') || '';
+
   function startCountdown() {
     console.log(timeLeft);
     const countdownInterval = setInterval(() => {
@@ -62,7 +66,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Function pour le timer de 60s (durée de la partie)
   let goodGuess = 0;
-  let timeLeftIg = 60;
+  let timeLeftIg = 5;
+
   function startTimer() {
     document.querySelector('.timer').innerHTML = timeLeftIg + "s"
     window.addEventListener("deviceorientation", handleOrientation, false);
@@ -79,6 +84,12 @@ document.addEventListener('DOMContentLoaded', function () {
         document.querySelector('.guess').style = "display: none;"
         document.querySelector('.timer').innerHTML = "Fin";
         document.querySelector('#accueil').style.display = "block";
+        if (nextButton) {
+          document.querySelector('#next').style.display = "block";
+        }
+        if (scoreScreenLink) {
+          document.querySelector('#scoreScreen').style.display = "block";
+        }
         window.removeEventListener("deviceorientation", handleOrientation, false);
       }
     }, 1000);
@@ -161,6 +172,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function chooseNextFilm() {
     if (currentFilmIndex >= theme_data.length) {
+      document.querySelector('#next').style.display = "block";
+      document.querySelector('#scoreScreen').style.display = "block";
       document.querySelector('#accueil').style.display = "block";
       document.querySelector('.results').innerHTML = "Nombre bonnes réponses :" + goodGuess;
       document.querySelector('.results').style = "font-size: 4rem;";
@@ -204,7 +217,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }, 1000);
   }
 
-
   function checkAndRequestPermission() {
     const permissionStatus = localStorage.getItem('devicePositionPermission');
     console.log(permissionStatus);
@@ -228,5 +240,23 @@ document.addEventListener('DOMContentLoaded', function () {
     } else if (gamma >= 45 && gamma <= 60) {
       chooseNextFilm();
     }
+  }
+  if (nextButton) {
+    nextButton.addEventListener("click", function () {
+      results += "<p>" + document.querySelector('span').innerHTML + ": " + goodGuess + "</p> ";
+      sessionStorage.setItem('results', results);
+      console.log(results);
+    })
+  }
+  if (scoreScreenLink) {
+    scoreScreenLink.addEventListener("click", function () {
+      console.log("click")
+      results += "<p>" + document.querySelector('span').innerHTML + ": " + goodGuess + "</p> ";
+      console.log(results);
+      document.querySelector('#results-screen').style = "display: flex";
+      document.querySelector('#results-screen>div').innerHTML = results;
+      results = '';
+      sessionStorage.setItem('results', results);
+    })
   }
 });

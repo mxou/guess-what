@@ -221,7 +221,9 @@ input {
     align-items: center;
 }
 
-#accueil {
+#accueil,
+#next,
+#scoreScreen {
     display: none;
 }
 
@@ -319,4 +321,35 @@ input {
     font-size: 3rem;
     font-family: Francois one;
     color: white;
+}
+
+#results-screen {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px 20px;
+    align-items: center;
+    position: absolute;
+    z-index: 1;
+    color: black;
+    font-size: 2rem;
+    font-family: Francois one;
+    background-color: #FFF8F0;
+    border-radius: 10%;
+    height: 80dvh;
+    width: 100dvh;
+    backdrop-filter: drop-shadow(0 0 5px rgba(0, 0, 0));
+}
+
+#results-screen h1 {
+    color: black;
+    font-size: 1em;
+}
+
+#results-screen .button {
+    width: 50%;
+}
+
+#results-screen>div {
+    overflow: scroll;
 }
