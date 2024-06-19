@@ -10,7 +10,7 @@ require('./assets/bdd/local.php');
 echo head('TITRE'); 
 
 $theme = $_GET['theme'];
-$table = str_replace("s", "", $theme);
+$table = substr($theme, 0, -1);
 $player_names = $_SESSION['player_names'] ?? [];
 // var_dump($player_names)
 

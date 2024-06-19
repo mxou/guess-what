@@ -8,13 +8,13 @@ document.addEventListener('DOMContentLoaded', function () {
     const anibtn = document.querySelectorAll('.button');
 
 
-    function checkDevice() {
-        if (window.innerHeight < window.innerWidth) {
-            document.querySelector('body').innerHTML = gandalf();
-        } else {
-            removeGandalf();
-        }
-    }
+    // function checkDevice() {
+    //     if (window.innerHeight < window.innerWidth) {
+    //         document.querySelector('body').innerHTML = gandalf();
+    //     } else {
+    //         removeGandalf();
+    //     }
+    // }
 
     function gandalf() {
         return `
