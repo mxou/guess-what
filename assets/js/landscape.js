@@ -44,6 +44,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // ORIENTATION CHECK
   // ORIENTATION CHECK
+  function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+  }
+  shuffle(theme_data);
 
   // Function timer qui annonce que la partie va commencer
   let timeLeft = 5;
