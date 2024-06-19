@@ -49,7 +49,7 @@ $theme_data = array_column($data, $table);
     </div>
 
     <div>
-        <!-- <div id="t">Valeur gamma</div> -->
+        <div id="t" style="display: none">Valeur gamma</div>
         <button id="requestPermissionButton">Request</button>
     </div>
 

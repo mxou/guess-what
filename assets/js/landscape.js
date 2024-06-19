@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
+  window.addEventListener("deviceorientation", handleOrientation, false);
+
   console.log(theme_data);
   // ORIENTATION CHECK
   // ORIENTATION CHECK
@@ -64,8 +66,9 @@ document.addEventListener('DOMContentLoaded', function () {
         document.querySelector('h1', 'h2').style.display = 'none';
         document.querySelector('h2').style.display = 'none';
         document.querySelector('.countdown').style.display = 'none';
+        document.querySelector('body').style = "background: none; background-color: #392F5A;"
         startTimer();
-      } if (timeLeft === 2) {
+      } if (timeLeft === 1) {
         chooseNextFilm();
       }
     }, 1000);
@@ -75,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function () {
   let goodGuess = 0;
   // Function pour le timer de 60s (durée de la partie)
   function startTimer() {
-    let timeLeft = 5;
+    let timeLeft = 60;
     document.querySelector('.timer').innerHTML = timeLeft + "s"
     const timer = setInterval(() => {
       timeLeft--;
@@ -125,7 +128,7 @@ document.addEventListener('DOMContentLoaded', function () {
       currentFilmIndex++;
       document.querySelector('.guess').innerHTML = nextFilm;
       timerActive = false;
-    }, 2000);
+    }, 1000);
   }
 
   // Function pour add des points quand le téléphone est incliné vers le bas
@@ -134,12 +137,14 @@ document.addEventListener('DOMContentLoaded', function () {
       return;
     }
 
+    document.querySelector('body').style = "background: none; background-color: green;"
     timerActivePoint = true;
 
     setTimeout(() => {
       goodGuess++;
       timerActivePoint = false;
-    }, 2000);
+      document.querySelector('body').style = "background: none; background-color: #392F5A;"
+    }, 1000);
   }
 
 
@@ -174,6 +179,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
   function handleOrientation(event) {
+    console.log("gamma frr")
     const gamma = Math.round(event.gamma);
     document.getElementById('t').innerHTML = gamma;
     if (gamma >= 45 && gamma <= 60) {
