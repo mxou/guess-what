@@ -44,6 +44,43 @@ checkAndRequestPermission();
 
   // ORIENTATION CHECK
   // ORIENTATION CHECK
+  function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+  }
+  shuffle(theme_data);
+
+  let wakeLock = null;
+
+  async function requestWakeLock() {
+    if ('wakeLock' in navigator) {
+      try {
+        wakeLock = await navigator.wakeLock.request('screen');
+      } catch (err) {
+        console.error(`${err.name}, ${err.message}`);
+      }
+    } else {
+      console.warn('Wake Lock API not supported');
+    }
+  }
+
+  function releaseWakeLock() {
+    if (wakeLock !== null) {
+      wakeLock.release().then(() => {
+        wakeLock = null;
+      });
+    }
+  }
+
+  window.onload = () => {
+    requestWakeLock();
+  };
+
+  window.onbeforeunload = () => {
+    releaseWakeLock();
+  };
 
   // Function timer qui annonce que la partie va commencer
   let timeLeft = 5;
@@ -119,6 +156,12 @@ checkAndRequestPermission();
   function chooseNextFilm() {
     if (currentFilmIndex >= theme_data.length) {
       document.querySelector('#accueil').style.display = "block";
+      document.querySelector('.results').innerHTML = "Nombre bonnes réponses :" + goodGuess;
+      document.querySelector('.results').style = "font-size: 4rem;";
+      document.querySelector('.results').style = "display: block;"
+      document.querySelector('.guess').style = "display: none;"
+      document.querySelector('.timer').innerHTML = "Fin";
+      window.removeEventListener("deviceorientation", handleOrientation, false);
       brrr();
       return;
     }

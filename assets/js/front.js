@@ -7,6 +7,31 @@ document.addEventListener('DOMContentLoaded', function () {
     const arbutton = document.querySelectorAll('.add_remove-btn');
     const anibtn = document.querySelectorAll('.button');
 
+    function checkDevice() {
+        if (window.innerHeight < window.innerWidth) {
+            document.querySelector('body').innerHTML = gandalf();
+        } else {
+            removeGandalf();
+        }
+    }
+
+    function gandalf() {
+        return `
+            <div id="gandalf">
+                <img src="./assets/img/Guesswhatalpha@2x.png" alt="Logo de l'appli"/>
+                <h1>Guess What est un jeu conçu pour smartphone, si tu veux y jouer reviens sur ton téléphone !</h1>
+            </div>
+        `;
+    }
+    function removeGandalf() {
+        const gandalfContent = document.getElementById('gandalf-content');
+        if (gandalfContent) {
+            gandalfContent.remove();
+        }
+    }
+
+    window.onload = checkDevice;
+    window.onresize = checkDevice;
     anibtn.forEach(function (btn) {
         btn.addEventListener('click', function () {
             console.log('test')
