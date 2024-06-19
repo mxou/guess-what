@@ -13,6 +13,9 @@ $player_names = sessionPlayers();
 if (!empty($player_names)) {
     for ($i = 0; $i < count($player_names); $i++) {
         var_dump(htmlspecialchars($player_names[$i]));
+        echo $i;
+        echo '<br>';
+        $nbr_players = $i;
     }
 } else {
     echo "Aucun joueur trouvé.";
@@ -23,6 +26,8 @@ if (isset($_POST['reset_session'])) {
     header('Location: player_count.php');
     exit;
 }
+
+var_dump($nbr_players);
 
 ?>
 

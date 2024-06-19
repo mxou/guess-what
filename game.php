@@ -13,7 +13,6 @@ $theme = $_GET['theme'];
 $table = substr($theme, 0, -1);
 $player_names = $_SESSION['player_names'] ?? [];
 
-// Initialiser l'index actuel du joueur s'il n'existe pas
 if (!isset($_SESSION['current_player_index'])) {
     $_SESSION['current_player_index'] = 0;
 }
@@ -21,7 +20,6 @@ if (!isset($_SESSION['current_player_index'])) {
 $current_player_index = $_SESSION['current_player_index'];
 $current_player = $player_names[$current_player_index] ?? '';
 
-// Récupérer les données du thème
 $sql = "SELECT * FROM $theme ORDER BY $table ASC";
 $stmt = $pdo->query($sql);
 $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -29,7 +27,7 @@ $theme_data = array_column($data, $table);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['next_player'])) {
     $_SESSION['current_player_index']++;
-    // Si on dépasse la liste des joueurs, on revient au début
+
     if ($_SESSION['current_player_index'] >= count($player_names)) {
         $_SESSION['current_player_index'] = 0;
     }
@@ -52,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['next_player'])) {
         <h1><?php echo htmlspecialchars($theme); ?></h1>
 
         <?php if (!empty($player_names)): ?>
-        <h2><?php echo htmlspecialchars($current_player); ?> tu commences</h2>
+        <h2><span><?php echo htmlspecialchars($current_player); ?></span> tu commences</h2>
         <p class="guess"></p>
         <p class="results"></p>
         <?php else: ?>
@@ -63,11 +61,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['next_player'])) {
         <p class="timer"></p>
 
         <a href="theme_choice.php" id="accueil" class="button">Accueil</a>
-        <?php if (count($_SESSION['player_names']) > 1): ?>
+        <?php if (count($player_names) > 1): ?>
         <form method="post" action="">
             <button type="submit" name="next_player" id="next" class="button">Joueur Suivant</button>
         </form>
-        <?php else: ?>
+        <?php endif; ?>
+
+        <?php if ($_SESSION['current_player_index'] === count($player_names) - 1): ?>
         <div id="scoreScreen" class="button">Voir les résultats</div>
         <?php endif; ?>
     </div>
@@ -76,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['next_player'])) {
         <div>
 
         </div>
-        <a href="index.php" class="button">Accueil</a>
+        <a href="theme_choice.php" class="button">Accueil</a>
     </div>
     <div>
         <div id="t" style="display: none">Valeur gamma</div>

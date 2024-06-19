@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Function pour le timer de 60s (durée de la partie)
   let goodGuess = 0;
-  let timeLeftIg = 60;
+  let timeLeftIg = 4;
 
   function startTimer() {
     document.querySelector('.timer').innerHTML = timeLeftIg + "s"
