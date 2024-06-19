@@ -21,9 +21,11 @@ $player_names = $_SESSION['player_names'] ?? [];
         <div class="element_container pg">
             <h1><?php echo htmlspecialchars($theme); ?></h1>
             <div>
-                <h2>60 secondes pour deviner </h2>
-                <h2>Incliner vers le haut pour valider</h2>
+                <h2>Mettez votre téléphone sur votre front</h2>
+                <h2>Vos amis essaieront de vous faire devinez qui/ce que vous êtes</h2>
+                <h2>Inclinez vers le haut pour valider</h2>
                 <h2>Vers le bas pour passer</h2>
+                <h2>60 secondes pour deviner</h2>
                 <h2>1 bonne réponse = 1 point</h2>
             </div>
             <input type="hidden" name="theme" value="<?php echo htmlspecialchars($theme); ?>">
