@@ -176,7 +176,7 @@ document.addEventListener('DOMContentLoaded', function () {
       document.querySelector('#scoreScreen').style.display = "block";
       document.querySelector('#accueil').style.display = "block";
       document.querySelector('.results').innerHTML = "Nombre bonnes réponses :" + goodGuess;
-      document.querySelector('.results').style = "font-size: 4rem;";
+      document.querySelector('.results').style = "font-size: 2rem;";
       document.querySelector('.results').style = "display: block;"
       document.querySelector('.guess').style = "display: none;"
       document.querySelector('.timer').innerHTML = "Fin";
